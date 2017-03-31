@@ -5,6 +5,11 @@ body{
   font-family: sans-serif;
 }
 
+img#id{
+  width: 20px;
+  height: 20px;
+}
+
 header#nav{
   height:40px;
   overflow: hidden;
