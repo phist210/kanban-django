@@ -1,11 +1,26 @@
 body{
-  background-color: #ccc;
+  background-color: #838C91;
   margin: 0;
   font-size: 15px;
   font-family: sans-serif;
 }
 
+header#nav{
+  height:40px;
+  overflow: hidden;
+  position: relative;
+  background-color: teal;
+  text-align: center;
+}
+
 div#logo{
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+div#post{
   height: 40px;
   line-height: 40px;
   padding-left: 20px;
@@ -21,17 +36,20 @@ div#account{
   vertical-align: middle;
 }
 
-div#container{
-  width:90%;
+div.wrapper-content{
+  width: 200px;
+  float: left;
+  height: auto;
   padding: 10px;
+  border: 1px solid #000;
+  margin-left: 10px;
+}
+
+div#container{
+  width: 90%;
+  padding: 10px;
+  height: 1200px;
   margin: 0 auto;
   margin-top: 30px;
   border: 1px solid #000;
-}
-
-header#nav{
-  height:40px;
-  overflow: hidden;
-  position: relative;
-  background-color: teal;
 }
