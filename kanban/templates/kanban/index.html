@@ -1,21 +1,26 @@
 {% extends 'kanban/base.html' %}
 {% load static %}
+{% load rest_framework %}
 {% block content %}
+
 <header id='nav'>
+
   <div id='logo'>
     THIS IS A LOGO
   </div>
+
   <div id='account'>
     Welcome, {{user}}
   </div>
 </header>
+
 <div id='container'>
-  <div id="task">
-    {% for task in task %}
-    <div id="{{task.id}}">
-      {{task.name}}
-    </div>
-    {% endfor %}
+  {% for task in task %}
+  <div class="wrapper-content">
+    <h3>{{task.name}}</h3>
+    Priority level: {{task.priority}}/10</br>
+    Status: {{task.status}}
   </div>
+  {% endfor %}
 </div>
 {% endblock %}
