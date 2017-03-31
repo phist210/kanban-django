@@ -5,6 +5,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Task
 from .serializers import TaskSerializer
+from django.views.decorators.csrf import csrf_protect
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -15,6 +16,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
 
 
+@csrf_protect
 @api_view(['GET', 'POST'])
 def task_list(request, pk):
     """
