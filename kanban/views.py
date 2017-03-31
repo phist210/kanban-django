@@ -1,11 +1,38 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
 from .models import Task
+
 from .serializers import TaskSerializer
 from django.views.decorators.csrf import csrf_protect
+
+
+def index(request):
+    try:
+        task = Task.objects.all()
+    except Task.DoesNotExist:
+        raise Http404("Task does not exist")
+    return render(request, 'kanban/index.html', {'task': task})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/task')
+    else:
+        form = UserCreationForm()
+    return render(request, 'kanban/signup.html', {'form': form})
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -59,5 +86,5 @@ def task_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        task.delete()
+        task.destroy()
         return Response(status=status.HTTP_204_NO_CONTENT)

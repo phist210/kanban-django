@@ -1,0 +1,21 @@
+{% extends 'kanban/base.html' %}
+{% load static %}
+{% block content %}
+<header id='nav'>
+  <div id='logo'>
+    THIS IS A LOGO
+  </div>
+  <div id='account'>
+    Welcome, {{user}}
+  </div>
+</header>
+<div id='container'>
+  <div id="task">
+    {% for task in task %}
+    <div id="{{task.id}}">
+      {{task.name}}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

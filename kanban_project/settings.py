@@ -27,6 +27,7 @@ DEBUG = True  # when done, set to False
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/kanban'
 
 # Application definition
 
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.'
+                                   'IsAuthenticatedOrReadOnly',),
     'PAGE_SIZE': 10
 }
 
@@ -84,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'kanban_db',
-        # 'USER': 'Friese',
-        'USER': 'emanon805',
+        'USER': 'Friese',
+        # 'USER': 'emanon805',
         'PASSWORD': '6345',
         'HOST': '127.0.0.1',
         'PORT': '5432',

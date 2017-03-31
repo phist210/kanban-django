@@ -1,0 +1,23 @@
+{% extends 'kanban/base.html' %}
+{% block title %}Login{% endblock %}
+<h2>Login</h2>
+<!-- <form method="post">
+ {% csrf_token %}
+ {{ form.as_p }}
+ <button type="submit">Login</button>
+</form> -->
+
+{% block content %}
+<form action="{% url 'login' %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+    {% for field in form %}
+        <label>{{ field.label }}</label>
+        {% if field.errors %}
+            {{ field.errors }}
+        {% endif %}
+        {{ field }}
+    {% endfor %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input class="button small" type="submit" value="Submit"/>
+</form>
+{% endblock %}

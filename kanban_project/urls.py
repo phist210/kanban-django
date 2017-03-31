@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.conf.urls import url, include
 from rest_framework import routers
 from kanban import views
+from django.contrib.auth.views import login
+from django.contrib.auth.views import logout
 
 router = routers.DefaultRouter()
 router.register('task', views.TaskViewSet)
@@ -25,6 +28,22 @@ router.register('task', views.TaskViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
+    url(r'^kanban', include('kanban.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^signup/$', views.signup, name='signup'),
+
+    url(
+        regex=r'^login/$',
+        view=login,
+        kwargs={'template_name': 'kanban/registration/login.html'},
+        name='login'
+    ),
+    url(
+        regex=r'^logout/$',
+        view=logout,
+        kwargs={'next_page': '/'},
+        name='logout'
+    ),
 ]
