@@ -2,14 +2,13 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
 from .models import Task
 from .serializers import TaskSerializer
 from django.views.decorators.csrf import csrf_protect
-from django.shortcuts import get_object_or_404
 
 
 def index(request):
