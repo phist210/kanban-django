@@ -1,20 +1,28 @@
 body{
-  background-color: #838C91;
+  background-color: #b39e6c;
   margin: 0;
   font-size: 15px;
   font-family: sans-serif;
 }
 
-img#id{
-  width: 20px;
-  height: 20px;
+.input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
 }
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
+
 
 header#nav{
   height:40px;
   overflow: hidden;
   position: relative;
-  background-color: teal;
+  background-color: #327d6d;
   text-align: center;
 }
 
@@ -25,7 +33,7 @@ div#logo{
   display: inline-block;
 }
 
-div#post{
+div#search{
   height: 40px;
   line-height: 40px;
   padding-left: 20px;
@@ -39,6 +47,8 @@ div#account{
   padding-right: 20px;
   float: right;
   vertical-align: middle;
+  font-weight: 100;
+  color: white;
 }
 
 div.wrapper-content{
@@ -46,8 +56,17 @@ div.wrapper-content{
   float: left;
   height: auto;
   padding: 10px;
-  border: 1px solid #000;
+  border: 2.5px solid #000;
   margin-left: 10px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+  opacity: 0.5;
+  transition: opacity .5s ease-in-out;
+}
+
+div.wrapper-content:hover{
+      opacity: 1;
 }
 
 div#container{
