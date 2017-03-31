@@ -7,14 +7,14 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
 from .models import Task
-
 from .serializers import TaskSerializer
 from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import get_object_or_404
 
 
 def index(request):
     try:
-        task = Task.objects.all()
+        task = Task.objects.all() 
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
     return render(request, 'kanban/index.html', {'task': task})
@@ -68,11 +68,8 @@ def task_detail(request, pk):
     """
     Retrieve, update or delete a snippet instance.
     """
-    try:
-        task = Task.objects.get(pk=pk)
-    except Task.DoesNotExist:
 
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    task = Task.get_object_or_404(pk=pk)
 
     if request.method == 'GET':
         serializer = TaskSerializer(task)
