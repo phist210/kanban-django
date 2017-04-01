@@ -14,10 +14,10 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError('This field must be an integer 1-10.')
 
     def vaild_status(status):
-        valid_list = ['active', 'pending', 'complete', 'backlog']
+        valid_list = ['backlog', 'pending', 'active', 'complete']
         if status.lower() not in valid_list:
-            raise serializers.ValidationError('This field must active, '
-                                              'pending, complete or backlog.')
+            raise serializers.ValidationError('This field must be backlog, '
+                                              'pending, active or complete.')
 
     priority = serializers.IntegerField(validators=[in_range])
     status = serializers.CharField(validators=[vaild_status])
