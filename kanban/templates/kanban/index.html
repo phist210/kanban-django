@@ -14,7 +14,7 @@
   </div>
 
   <div id='account'>
-    Welcome, {{user}}
+    Welcome, {{user}} | <a id='logout' href='/logout'>Logout</a>
   </div>
 
 </header>
@@ -22,7 +22,7 @@
 <div id='container'>
   {% for task in task %}
   <div class="wrapper-content">
-    <h3>{{task.name}}</h3>
+    <div class='task_name'><h3>{{task.name}}</h3></div>
     Priority level: {{task.priority}}/10</br>
     Status: {{task.status}}
   </div>

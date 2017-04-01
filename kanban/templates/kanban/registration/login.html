@@ -1,23 +1,38 @@
-{% extends 'kanban/base.html' %}
-{% block title %}Login{% endblock %}
-<h2>Login</h2>
-<!-- <form method="post">
- {% csrf_token %}
- {{ form.as_p }}
- <button type="submit">Login</button>
-</form> -->
+{% extends "kanban/base.html" %}
 
 {% block content %}
-<form action="{% url 'login' %}" method="post" accept-charset="utf-8">
-    {% csrf_token %}
-    {% for field in form %}
-        <label>{{ field.label }}</label>
-        {% if field.errors %}
-            {{ field.errors }}
-        {% endif %}
-        {{ field }}
-    {% endfor %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    <input class="button small" type="submit" value="Submit"/>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
 </form>
+<a href='/signup'>Register</a>
+{# Assumes you setup the password_reset view in your URLconf #}
+{# <p><a href="{% url 'password_reset' %}">Lost password?</a></p> #}
+
 {% endblock %}

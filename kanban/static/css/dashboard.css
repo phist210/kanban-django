@@ -16,7 +16,11 @@ input[type=text]:focus {
     width: 100%;
 }
 
-
+a#logout{
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
 
 header#nav{
   height:40px;
@@ -58,6 +62,7 @@ div.wrapper-content{
   padding: 10px;
   border: 2.5px solid #000;
   margin-left: 10px;
+  margin-bottom: 30px;
   border-radius: 10px;
   text-align: center;
   background-color: white;

@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_protect
 
 def index(request):
     try:
-        task = Task.objects.all() 
+        task = Task.objects.all()
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
     return render(request, 'kanban/index.html', {'task': task})
@@ -28,7 +28,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/task')
+            return redirect('/kanban')
     else:
         form = UserCreationForm()
     return render(request, 'kanban/signup.html', {'form': form})
