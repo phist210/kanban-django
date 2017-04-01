@@ -15,25 +15,13 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError('This field must be an integer 1-10.')
 
     def vaild_status(status):
-        valid_list = ['active', 'pending', 'complete', 'backlog']
+        valid_list = ['active', 'pending', 'complete', 'backlog'] #  active, pending, complete, backlog
         if status.lower() not in valid_list:
-            raise serializers.ValidationError('This field must %s' % (valid_list))
+            raise serializers.ValidationError('This field must active, pending, complete, backlog')
 
     priority  = serializers.IntegerField(validators=[in_range])
     status  = serializers.CharField(validators=[vaild_status])
- 
 
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('password', 'first_name', 'last_name', 'email')
-#         write_only_fields = ('password',)
-
-#     def create(self, validated_data):
-#             user = User(email=validated_data['email'], username=validated_data['username'])
-#             user.set_password(validated_data['password'])
-#             user.save()
-#             return user
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
