@@ -4,6 +4,7 @@ from rest_framework import serializers
 from .models import Task
 
 
+
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
@@ -14,9 +15,12 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError('This field must be an integer 1-10.')
 
     def vaild_status(status):
-        valid_list = ['active', 'pending', 'complete', 'backlog']
+        valid_list = ['active', 'pending', 'complete', 'backlog'] #  active, pending, complete, backlog
         if status.lower() not in valid_list:
-            raise serializers.ValidationError('This field must %s' % (valid_list))
+            raise serializers.ValidationError('This field must active, pending, complete, backlog')
+
+    priority  = serializers.IntegerField(validators=[in_range])
+    status  = serializers.CharField(validators=[vaild_status])
 
 
 class UserSerializer(serializers.ModelSerializer):
