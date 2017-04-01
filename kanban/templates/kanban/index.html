@@ -22,9 +22,9 @@
 <div id='container'>
   {% for task in task %}
   <div class="wrapper-content">
-    <div class='task_name'><h3>{{task.name}}</h3></div>
-    Priority level: {{task.priority}}/10</br>
-    Status: {{task.status}}
+    <div class='task_name' id='{{task.id}}'><h3>{{task.name}}</h3></div>
+    <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</br>
+    Status: {{task.status}}</div>
   </div>
   {% endfor %}
 </div>
