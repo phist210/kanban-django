@@ -23,6 +23,7 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
     status  = serializers.CharField(validators=[vaild_status])
  
 
+<<<<<<< HEAD
 
 # class UserSerializer(serializers.ModelSerializer):
 #     class Meta:
@@ -35,3 +36,17 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 #             user.set_password(validated_data['password'])
 #             user.save()
 #             return user
+=======
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('password', 'first_name', 'last_name', 'email')
+        write_only_fields = ('password',)
+
+    def create(self, validated_data):
+            user = User(email=validated_data['email'],
+                        username=validated_data['username'])
+            user.set_password(validated_data['password'])
+            user.save()
+            return user
+>>>>>>> 0b0d35644c086f3efe1d279ab02d24e5dcb4928f
