@@ -1,15 +1,17 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_protect
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
 from .models import Task
-from .serializers import TaskSerializer
-from django.views.decorators.csrf import csrf_protect
+from .serializers import TaskSerializer, UserSerializer
+from rest_framework import generics
 from .forms import TaskForm
+from django.contrib.auth.models import User
 
 
 def new_task(request):
@@ -54,6 +56,17 @@ class TaskViewSet(viewsets.ModelViewSet):
     """
     queryset = Task.objects.all().order_by('-status')
     serializer_class = TaskSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 
 
 @csrf_protect
