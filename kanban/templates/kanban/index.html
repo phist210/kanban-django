@@ -23,26 +23,26 @@
   {% for task in task %}
     {% if task.status == 'backlog' %}
       <div class="wrapper-content" id='{{task.status}}'>
-        <div class='task_name' id='{{task.id}}'><h3>{{task.name}}</h3></div>
-        <div class='task_content' id='{{task.id}}'>{{task.status}}Priority level: {{task.priority}}/10</div>
+        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
+        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
     {% endif %}
     {% if task.status == 'pending' %}
       <div class="wrapper-content" id='{{task.status}}'>
-        <div class='task_name' id='{{task.id}}'><h3>{{task.name}}</h3></div>
-        <div class='task_content' id='{{task.id}}'>{{task.status}}Priority level: {{task.priority}}/10</div>
+        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
+        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
     {% endif %}
     {% if task.status == 'active' %}
       <div class="wrapper-content" id='{{task.status}}'>
-        <div class='task_name' id='{{task.id}}'><h3>{{task.name}}</h3></div>
-        <div class='task_content' id='{{task.id}}'>{{task.status}}Priority level: {{task.priority}}/10</div>
+        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
+        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
     {% endif %}
     {% if task.status == 'complete' %}
       <div class="wrapper-content" id='{{task.status}}'>
-        <div class='task_name' id='{{task.id}}'><h3>{{task.name}}</h3></div>
-        <div class='task_content' id='{{task.id}}'>{{task.status}}Priority level: {{task.priority}}/10</div>
+        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
+        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
     {% endif %}
   {% endfor %}
