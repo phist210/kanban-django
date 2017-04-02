@@ -4,14 +4,13 @@
     <meta charset="utf-8">
     <title>KANBAN</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "css/dashboard.css" %}?v=00006" type="text/css"/>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/kanbanlogo.png' %}"/>
   </head>
   <body>
     {% block content %}
-    {% csrf_token %}
     {% endblock %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="{% static "js/dashboard.js" %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static "js/dashboard.js" %}?v=00006"></script>
   </body>
 </html>

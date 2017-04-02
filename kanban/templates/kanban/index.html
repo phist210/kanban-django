@@ -4,7 +4,7 @@
 {% block content %}
 {% include 'kanban/nav_bar.html' %}
 <div id='container'>
-  <div class='big-block' id='backlog'>
+  <div id='big-block'>
     <h1>Backlog</h1>
     {% for task in task %}
       {% if task.status == 'backlog' %}
@@ -15,7 +15,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div class='big-block' id='active'>
+  <div id='big-block'>
     <h1>Active</h1>
     {% for task in task %}
       {% if task.status == 'active' %}
@@ -26,7 +26,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div class='big-block' id='complete'>
+  <div id='big-block'>
     <h1>Complete</h1>
     {% for task in task %}
       {% if task.status == 'complete' %}
@@ -39,7 +39,12 @@
   </div>
 
   <div class='wrapper-content' id='new_task'>
-    <a href='/kanban/new_task'><img width=30 height=30 src='{% static "/images/new_task.png" %}'/></a>
+    <img class='add_task' width=30 height=30 src='{% static "/images/new_task.png" %}?v=00006'/>
+    <form method="POST" class="input">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">Save</input>
+    </form>
   </div>
 </div>
 {% endblock %}
