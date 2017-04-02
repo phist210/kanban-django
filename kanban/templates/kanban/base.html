@@ -3,16 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>KANBAN</title>
-    {% load staticfiles %}
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" type="text/css"/>
-    <link rel="shortcut icon" type="image/png" href="static/images/kanbanlogo.png"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/kanbanlogo.png' %}"/>
   </head>
   <body>
     {% block content %}
     {% csrf_token %}
     {% endblock %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="https://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
   <script src="{% static "js/dashboard.js" %}"></script>
   </body>
 </html>

@@ -1,0 +1,19 @@
+{% block content %}
+<header id='nav'>
+
+  <div id='search'>
+    <input type='text' name='search' placeholder="Search...">
+  </div>
+
+  <div id='logo'>
+    <a href='/kanban/'>
+      <img src='{% static "/images/kanbanlogo.png" %}' alt='Kanban' height='42' width='42'/>
+    </a>
+  </div>
+
+  <div id='account'>
+    Welcome, {{user}} | <a id='logout' href='/logout'>Logout</a>
+  </div>
+
+</header>
+{% endblock %}

@@ -13,7 +13,7 @@ body{
 
 /* When the input field gets focus, change its width to 100% */
 input[type=text]:focus {
-    width: 100%;
+    width: 180px;
 }
 
 a#logout{
@@ -53,6 +53,14 @@ div#account{
   vertical-align: middle;
   font-weight: 100;
   color: white;
+}
+
+div.big-block{
+  float: left;
+  width: 20px;
+  margin: 0px;
+  margin-left: 5px;
+  border: 2.5px solid #000;
 }
 
 div.wrapper-content{

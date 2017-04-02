@@ -2,49 +2,45 @@
 {% load static %}
 {% load rest_framework %}
 {% block content %}
-
-<header id='nav'>
-
-  <div id='search'>
-    <input type='text' name='search' placeholder="Search...">
-  </div>
-
-  <div id='logo'>
-    <a href='/kanban'><img src='static/images/kanbanlogo.png' alt='Kanban' height='42' width='42'/></a>
-  </div>
-
-  <div id='account'>
-    Welcome, {{user}} | <a id='logout' href='/logout'>Logout</a>
-  </div>
-
-</header>
+{% include 'includes/nav_bar.html' %}
 
 <div id='container'>
-  {% for task in task %}
-    {% if task.status == 'backlog' %}
-      <div class="wrapper-content" id='{{task.status}}'>
+  <div class='big-block' id='backlog'>
+    <h1>Backlog</h1>
+    {% for task in task %}
+      {% if task.status == 'backlog' %}
+      <div class="wrapper-content" id='backlog'>
         <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
         <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
-    {% endif %}
-    {% if task.status == 'pending' %}
-      <div class="wrapper-content" id='{{task.status}}'>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class='big-block' id='active'>
+    <h1>Active</h1>
+    {% for task in task %}
+      {% if task.status == 'active' %}
+      <div class="wrapper-content" id='active'>
         <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
         <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
-    {% endif %}
-    {% if task.status == 'active' %}
-      <div class="wrapper-content" id='{{task.status}}'>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class='big-block' id='complete'>
+    <h1>Complete</h1>
+    {% for task in task %}
+      {% if task.status == 'complete' %}
+      <div class="wrapper-content" id='complete'>
         <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
         <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
-    {% endif %}
-    {% if task.status == 'complete' %}
-      <div class="wrapper-content" id='{{task.status}}'>
-        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
-        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
-      </div>
-    {% endif %}
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class='wrapper-content' id='new_task'>
+    <a href='/kanban/new_task'><img width=30 height=30 src='{% static "/images/new_task.png" %}'/></a>
+  </div>
 </div>
 {% endblock %}

@@ -9,6 +9,20 @@ from rest_framework import viewsets
 from .models import Task
 from .serializers import TaskSerializer
 from django.views.decorators.csrf import csrf_protect
+from .forms import TaskForm
+
+
+def new_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.owner = request.user
+            task.save()
+            return redirect('/kanban/', pk=task.pk)
+    else:
+        form = TaskForm()
+    return render(request, 'kanban/new_task.html', {'form': form})
 
 
 def index(request):
@@ -38,7 +52,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows abilities to be viewed or edited.
     """
-    queryset = Task.objects.all().order_by('-priority')
+    queryset = Task.objects.all().order_by('-status')
     serializer_class = TaskSerializer
 
 
