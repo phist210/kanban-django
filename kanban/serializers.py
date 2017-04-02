@@ -11,7 +11,8 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 
     def in_range(priority):
         if priority not in range(1, 11):
-            raise serializers.ValidationError('This field must be an integer 1-10.')
+            raise serializers.ValidationError('This field must '
+                                              'be an integer 1-10.')
 
     def vaild_status(status):
         valid_list = ['backlog', 'pending', 'active', 'complete']

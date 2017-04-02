@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import Http404
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
