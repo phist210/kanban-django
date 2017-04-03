@@ -26,7 +26,8 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
 
-    task = serializers.PrimaryKeyRelatedField(many=True, queryset=Task.objects.all())
+    task = serializers.PrimaryKeyRelatedField(many=True,
+                                              queryset=Task.objects.all())
 
     class Meta:
         model = User

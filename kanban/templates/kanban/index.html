@@ -4,7 +4,7 @@
 {% block content %}
 {% include 'kanban/nav_bar.html' %}
 <div id='container'>
-  <div id='big-block'>
+  <div class='big-block'>
     <h1>Backlog</h1>
     {% for task in task %}
       {% if task.status == 'backlog' %}
@@ -15,7 +15,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div id='big-block'>
+  <div class='big-block'>
     <h1>Active</h1>
     {% for task in task %}
       {% if task.status == 'active' %}
@@ -26,7 +26,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div id='big-block'>
+  <div class='big-block'>
     <h1>Complete</h1>
     {% for task in task %}
       {% if task.status == 'complete' %}
@@ -38,13 +38,21 @@
     {% endfor %}
   </div>
 
-  <div class='wrapper-content' id='new_task'>
-    <img class='add_task' width=30 height=30 src='{% static "/images/new_task.png" %}?v=00006'/>
-    <form method="POST" class="input">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit">Save</input>
-    </form>
+  <div class='new_task_wrapper' id='new_task'>
+        <!-- The Modal -->
+    <img id='myBtn' width=30 height=30 src='{% static "/images/new_task.png" %}?v=00006'/>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+          <h4>New task</h4>
+          <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Add new task</button>
+          </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

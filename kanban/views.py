@@ -14,7 +14,16 @@ from .forms import TaskForm
 from django.contrib.auth.models import User
 
 
-def new_task(request):
+def edit_task(request):
+    pass
+
+
+def index(request):
+    try:
+        task = Task.objects.filter(owner=1).order_by('-priority')
+
+    except Task.DoesNotExist:
+        raise Http404("Task does not exist")
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -24,15 +33,7 @@ def new_task(request):
             return redirect('/kanban/', pk=task.pk)
     else:
         form = TaskForm()
-    return render(request, 'kanban/new_task.html', {'form': form})
-
-
-def index(request):
-    try:
-        task = Task.objects.all()
-    except Task.DoesNotExist:
-        raise Http404("Task does not exist")
-    return render(request, 'kanban/index.html', {'task': task})
+    return render(request, 'kanban/index.html', {'task': task, 'form': form})
 
 
 def signup(request):
@@ -66,7 +67,6 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
 
 @csrf_protect
