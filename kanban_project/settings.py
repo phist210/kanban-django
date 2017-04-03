@@ -26,7 +26,7 @@ SECRET_KEY = 's=t5^r6xi!5gcnw&dks=%)(j%37ihft*o&j0g^nv_%umy(2x1k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # when done, set to False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://mysterious-meadow-31968.herokuapp.com/']
 
 LOGIN_REDIRECT_URL = '/kanban'
 
