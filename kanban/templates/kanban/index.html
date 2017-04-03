@@ -9,7 +9,7 @@
     {% for task in task %}
       {% if task.status == 'backlog' %}
       <div class="wrapper-content" id='backlog'>
-        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
+        <h3><div class='task_name' id='{{task.id}}'>{{ task.name }}</div></h3>
         <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
       </div>
       {% endif %}
@@ -53,6 +53,18 @@
           </form>
       </div>
     </div>
+    <!-- <div id="myEditModal" class="modal">
+      <!-- Modal content -->
+      <!-- <div class="modal-content">
+        <span class="close">&times;</span>
+          <h4>New task</h4>
+          <form method="PUT">
+          {% csrf_token %}
+          {{ editform.as_p }}
+          <button type="submit">Add new task</button>
+          </form>
+      </div>
+    </div> -->
   </div>
 </div>
 {% endblock %}

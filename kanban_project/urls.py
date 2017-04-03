@@ -21,7 +21,7 @@ from django.contrib.auth.views import login
 from django.contrib.auth.views import logout
 
 router = routers.DefaultRouter()
-router.register('task', views.TaskViewSet)
+router.register('task', views.TaskViewSet, 'task-list')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

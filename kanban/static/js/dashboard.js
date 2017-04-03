@@ -1,3 +1,5 @@
+// -------------Popup window for new task--------------
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -23,3 +25,23 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+//-----------------Popup window for editting task------------------
+// var editmodal = document.getElementById('myEditModal');
+//
+// $('.wrapper-content').on('click', function() {
+//     editmodal.style.display = 'block';
+// });
+//
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     editmodal.style.display = "none";
+// }
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == editmodal) {
+//         editmodal.style.display = "none";
+//     }
+// }
