@@ -4,7 +4,7 @@
 // });
 
 function getTasks() {
-  var taskApi = "http://localhost:8000/task/";
+  var taskApi = "https://mysterious-meadow-31968.herokuapp.com/task/";
   $.ajax({url: taskApi, success: function(result) {
     var taskLength = result.results.length;
 
