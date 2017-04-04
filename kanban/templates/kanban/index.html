@@ -1,11 +1,9 @@
 {% extends 'kanban/base.html' %}
 {% load static %}
-{% load rest_framework %}
 {% block content %}
 {% include 'kanban/nav_bar.html' %}
 
 <div id='container'>
-<<<<<<< HEAD
   <div class="big-block" id="backlog">
     <h2>Backlog</h2>
   </div>
@@ -32,71 +30,5 @@
      </div>
    </div>
  </div>
-
-=======
-  <div class='big-block'>
-    <h1>Backlog</h1>
-    {% for task in task %}
-      {% if task.status == 'backlog' %}
-      <div class="wrapper-content" id='backlog'>
-        <h3><div class='task_name' id='{{task.id}}'>{{ task.name }}</div></h3>
-        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
-      </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <div class='big-block'>
-    <h1>Active</h1>
-    {% for task in task %}
-      {% if task.status == 'active' %}
-      <div class="wrapper-content" id='active'>
-        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
-        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
-      </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <div class='big-block'>
-    <h1>Complete</h1>
-    {% for task in task %}
-      {% if task.status == 'complete' %}
-      <div class="wrapper-content" id='complete'>
-        <h3><div class='task_name' id='{{task.id}}'>{{task.name}}</div></h3>
-        <div class='task_content' id='{{task.id}}'>Priority level: {{task.priority}}/10</div>
-      </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
-  <div class='new_task_wrapper' id='new_task'>
-        <!-- The Modal -->
-    <img id='myBtn' width=30 height=30 src='{% static "/images/new_task.png" %}?v=00006'/>
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-          <h4>New task</h4>
-          <form method="POST">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit">Add new task</button>
-          </form>
-      </div>
-    </div>
-    <!-- <div id="myEditModal" class="modal">
-      <!-- Modal content -->
-      <!-- <div class="modal-content">
-        <span class="close">&times;</span>
-          <h4>New task</h4>
-          <form method="PUT">
-          {% csrf_token %}
-          {{ editform.as_p }}
-          <button type="submit">Add new task</button>
-          </form>
-      </div>
-    </div> -->
-  </div>
->>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
 </div>
-
 {% endblock %}

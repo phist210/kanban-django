@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // $('.wrapper-content').click(function(event){
 //   console.log("Heyheyhey");
 // });
@@ -103,7 +103,7 @@ function edit_task() {
 // // When the user clicks on <span> (x), close the modal
 // span.onclick = function() {
 //     modal.style.display = "none";
-=======
+
 // -------------Popup window for new task--------------
 
 // Get the modal
@@ -131,32 +131,3 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
-
-//-----------------Popup window for editting task------------------
-// var editmodal = document.getElementById('myEditModal');
-//
-// $('.wrapper-content').on('click', function() {
-//     editmodal.style.display = 'block';
-// });
-//
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//     editmodal.style.display = "none";
->>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
-// }
-//
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-<<<<<<< HEAD
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-// // ------------ ^ Popup window for new task ^-------------
-=======
-//     if (event.target == editmodal) {
-//         editmodal.style.display = "none";
-//     }
-// }
->>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
