@@ -56,11 +56,7 @@ div#account{
 }
 
 div.big-block{
-<<<<<<< HEAD
   width: 25%;
-=======
-  width: 20%;
->>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
   float: left;
   margin-right: 5px;
   border: 2.5px solid #000;
@@ -150,7 +146,3 @@ div#container{
     text-decoration: none;
     cursor: pointer;
 }
-<<<<<<< HEAD
-Add Comment
-=======
->>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
