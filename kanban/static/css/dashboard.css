@@ -13,7 +13,7 @@ body{
 
 /* When the input field gets focus, change its width to 100% */
 input[type=text]:focus {
-    width: 180px;
+    width: 140px;
 }
 
 a#logout{
@@ -56,15 +56,36 @@ div#account{
 }
 
 div.big-block{
+  width: 25%;
   float: left;
-  width: 20px;
-  margin: 0px;
-  margin-left: 5px;
+  margin-right: 5px;
   border: 2.5px solid #000;
+  text-align: center;
+
 }
 
 div.wrapper-content{
-  width: 200px;
+  width: 70%;
+  float: left;
+  height: auto;
+  padding: 10px;
+  border: 2.5px solid #000;
+  /*margin-left: 10px;
+  margin-bottom: 30px;*/
+  margin: 0 auto;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+  opacity: 0.8;
+  transition: opacity .3s ease-in-out;
+}
+
+div.wrapper-content:hover{
+  opacity: 1;
+}
+
+div.new_task_wrapper{
+  width: 50px;
   float: left;
   height: auto;
   padding: 10px;
@@ -74,12 +95,7 @@ div.wrapper-content{
   border-radius: 10px;
   text-align: center;
   background-color: white;
-  opacity: 0.5;
-  transition: opacity .5s ease-in-out;
-}
-
-div.wrapper-content:hover{
-      opacity: 1;
+  cursor: crosshair;
 }
 
 div#container{
@@ -90,3 +106,44 @@ div#container{
   margin-top: 30px;
   border: 1px solid #000;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 30%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+Add Comment
