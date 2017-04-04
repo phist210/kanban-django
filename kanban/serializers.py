@@ -7,7 +7,11 @@ from .models import Task
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
+<<<<<<< HEAD
+        fields = ('name', 'priority', 'status', 'owner_id', 'id')
+=======
         fields = ('name', 'priority', 'status', 'owner_id')
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
 
     def in_range(priority):
         if priority not in range(1, 11):

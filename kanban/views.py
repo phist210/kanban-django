@@ -1,7 +1,3 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from django.views.decorators.csrf import csrf_protect
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
@@ -14,13 +10,31 @@ from .forms import TaskForm, EditTaskForm
 from django.contrib.auth.models import User
 
 
+<<<<<<< HEAD
+# def new_task(request):
+#     if request.method == 'POST':
+#         form = TaskForm(request.POST)
+#         if form.is_valid():
+#             task = form.save(commit=False)
+#             task.owner = request.user
+#             task.save()
+#             return redirect('/kanban/', pk=task.pk)
+#     else:
+#         form = TaskForm()
+#     return render(request, 'kanban/new_task.html', {'form': form})
+=======
 def edit_task(request):
     pass
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
 
 
 def index(request):
     try:
+<<<<<<< HEAD
+        task = Task.objects.filter(owner_id=request.user.id)
+=======
         task = Task.objects.filter(owner=1).order_by('-priority')
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
     if request.method == 'POST':
@@ -32,8 +46,12 @@ def index(request):
             return redirect('/kanban/', pk=task.pk)
     else:
         form = TaskForm()
+<<<<<<< HEAD
+    return render(request, 'kanban/index.html', {'task': task, "form": form})
+=======
 
     return render(request, 'kanban/index.html', {'task': task, 'form': form})
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
 
 
 def signup(request):
@@ -69,6 +87,8 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+<<<<<<< HEAD
+=======
 
 
 # @csrf_protect
@@ -113,3 +133,4 @@ class UserDetail(generics.RetrieveAPIView):
 #     elif request.method == 'DELETE':
 #         task.destroy()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed

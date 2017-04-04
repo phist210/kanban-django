@@ -56,20 +56,27 @@ div#account{
 }
 
 div.big-block{
+<<<<<<< HEAD
+  width: 25%;
+=======
   width: 20%;
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
   float: left;
   margin-right: 5px;
   border: 2.5px solid #000;
+  text-align: center;
+
 }
 
 div.wrapper-content{
-  width: 200px;
+  width: 70%;
   float: left;
   height: auto;
   padding: 10px;
   border: 2.5px solid #000;
-  margin-left: 10px;
-  margin-bottom: 30px;
+  /*margin-left: 10px;
+  margin-bottom: 30px;*/
+  margin: 0 auto;
   border-radius: 10px;
   text-align: center;
   background-color: white;
@@ -143,3 +150,7 @@ div#container{
     text-decoration: none;
     cursor: pointer;
 }
+<<<<<<< HEAD
+Add Comment
+=======
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
