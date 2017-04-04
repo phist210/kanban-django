@@ -68,13 +68,16 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
 
 WSGI_APPLICATION = 'kanban_project.wsgi.application'
 
@@ -86,8 +89,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'kanban_db',
-        # 'USER': 'Friese',
-        'USER': 'emanon805',
+        'USER': 'Friese',
+        # 'USER': 'emanon805',
         'PASSWORD': '6345',
         'HOST': '127.0.0.1',
         'PORT': '5432',

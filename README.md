@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Trello Clone
 
 Here we build a clone of the well known project-management application using Django Rest Frameworks,
+=======
+# Kanban Django
+
+Here we build a clone of the well known project-management application, Trello using Django Rest Frameworks,
+>>>>>>> 884adccd0e5a5dd9858adb8e6436c5d8992d36ed
 Javascript, Ajax and HTML/CSS.
 
 
