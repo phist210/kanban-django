@@ -42,6 +42,22 @@ def signup(request):
     return render(request, 'kanban/signup.html', {'form': form})
 
 
+def edit_task(request, id):
+    try:
+        task = Task.objects.get(id=id)
+    except Task.DoesNotExist:
+        raise Http404("Task does not exist")
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            task = form.save(commit=True)
+            task.save()
+            return redirect('/kanban/', pk=task.pk)
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'kanban/edit_task.html', {'form': form, 'task': task})
+
+
 class TaskViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows abilities to be viewed or edited.

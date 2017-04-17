@@ -1,10 +1,37 @@
+$(function() {
+  $('.editable').inlineEdit({
+    buttonText: 'Add',
+    save: function(e, data) {
+      return confirm('Change name to '+ data.value +'?');
+    }
+  });
+});
 
-// $('.wrapper-content').click(function(event){
-//   console.log("Heyheyhey");
-// });
+function sortaTable() {
+
+  $( ".big-block" ).sortable({
+    connectWith: ".big-block",
+    handle: ".portlet-header",
+    cancel: ".portlet-toggle",
+    placeholder: "portlet-placeholder ui-corner-all",
+  });
+  $( ".portlet" )
+      .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+      .addClass( "ui-widget-header ui-corner-all" )
+      .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+  $( ".portlet-toggle" ).on( "click", function() {
+
+    var icon = $( this );
+    icon.toggleClass( "ui-icon-plusthick ui-icon-minusthick" );
+    icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+  });
+  // console.log($(sdafasdfasdf).serialize());
+}
 
 function getTasks() {
-  var taskApi = "https://mysterious-meadow-31968.herokuapp.com/task/";
+  var taskApi = "/task/";
   $.ajax({url: taskApi, success: function(result) {
     var taskLength = result.results.length;
 
@@ -13,29 +40,50 @@ function getTasks() {
       var taskStatus = result.results[i].status;
       var taskPriority = result.results[i].priority;
       var taskID = result.results[i].id;
-      console.log(taskID);
 
       if(taskStatus.toLowerCase() === "backlog"){
-        $('div.big-block#backlog').append("<div class=wrapper-content id="+ taskID +">" + "<h3>" + taskName + "</h3>" + "Priority level: " + taskPriority + "/10" + "</div>");
+        $('div.big-block#backlog').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + "Priority level: " + taskPriority + "/10" + "</div>" + "</div>");
       }
       else if (taskStatus.toLowerCase() === "active") {
-        $('div.big-block#active').append("<div class=wrapper-content id="+ taskID +">" + "<h3>" + taskName + "</h3>" + "Priority level: " + taskPriority + "/10" + "</div>");
+        $('div.big-block#active').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + "Priority level: " + taskPriority + "/10" + "</div>" + "</div>");
       }
       else if (taskStatus.toLowerCase() === "complete") {
-        $('div.big-block#complete').append("<div class=wrapper-content id="+ taskID +">" + "<h3>" + taskName + "</h3>" + "Priority level: " + taskPriority + "/10" + "</div>");
+        $('div.big-block#complete').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + "Priority level: " + taskPriority + "/10" + "</div>" + "</div>");
       }
     }
+    sortaTable();
+    portletEdit();
   }
 });
 }
 
-getTasks();
+$(getTasks)
 
-$('.big-block').on('click', function() {
-  console.log("clicked");
+function portletEdit() {
+    $('.portlet-content').on("click", function(){
+    var portletID = ($(this).parent().attr('id'));
+    var portletStatus = ($(this).parents('.big-block').attr('id'));
+    console.log(portletID);
+    console.log(portletStatus);
+    window.location.replace("/kanban/" + portletID);
+  });
+}
+
+$("edit_task").submit(function(e){
+    $.ajax({
+        url: 'task/',
+        type: "PUT",
+        data: $("edit_task").serialize(),
+        cache: false,
+        dataType: "text",
+        success: function(data){
+          console.log('a');
+        },
+        error: function() {
+            console.log("ERROR");
+        }
+    });
 });
-
-
 
 $('new_task_form').on('submit', function(event) {
   event.preventDefault();
@@ -44,8 +92,6 @@ $('new_task_form').on('submit', function(event) {
 });
 
 function new_task() {
-  // console.log("create post is working");
-  // console.log($('#new_task_wrapper').val());
   $.ajax({
     url: "task/",
     type: "POST",
@@ -53,56 +99,9 @@ function new_task() {
 
     success: function(json) {
       $('#new_task_wrapper').val('');
-      // console.log(json);
-      // console.log('success');
-    }
-    // error: function(xhr, errmsg, err) {
-    //   $('#container').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-    //             " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-    //         console.log(xhr.status + ": " + xhr.responseText);
-    // }
-  });
-};
-
-
-// $('new_task_form').on('submit', function(event) {
-//   event.preventDefault();
-//   console.log("form submitted!");
-//   new_task();
-// });
-
-function edit_task() {
-  console.log("create post is working");
-  console.log($('#new_task_wrapper').val());
-  $.ajax({
-    url: "task/",
-    type: "PUT",
-    data: { new_task: $("#new_task_wrapper").val() },
-
-    success: function(json) {
-      $('#new_task_wrapper').val('');
     }
   });
 };
-//
-// // // ------------ v Popup window for new task v -------------
-// // Get the modal
-// var modal = document.getElementById('myModal');
-//
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-//
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-//
-// // When the user clicks the button, open the modal
-// btn.onclick = function() {
-//     modal.style.display = "block";
-// }
-//
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//     modal.style.display = "none";
 
 // -------------Popup window for new task--------------
 

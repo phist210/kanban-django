@@ -11,8 +11,13 @@
     </a>
   </div>
 
+  {% if user.is_authenticated %}
   <div id='account'>
-    Welcome, {{user}} | <a id='logout' href='/logout'>Logout</a>
+    Welcome, {{user}} | <a class='navbutton' href='/logout'>Logout</a>
   </div>
-
+  {% else %}
+  <div id='account'>
+    <a class='navbutton' href='/login'>Login</a> | <a class='navbutton' href='/signup'>Signup</a>
+  </div>
+  {% endif %}
 </header>

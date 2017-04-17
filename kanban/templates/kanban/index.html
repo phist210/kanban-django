@@ -3,32 +3,37 @@
 {% block content %}
 {% include 'kanban/nav_bar.html' %}
 
-<div id='container'>
-  <div class="big-block" id="backlog">
-    <h2>Backlog</h2>
-  </div>
-  <div class="big-block" id="active">
-    <h2>Active</h2>
-  </div>
-  <div class="big-block" id="complete">
-    <h2>Complete</h2>
-  </div>
-
-  <div class='new_task_wrapper' id='new_task'>
-       <!-- The Modal -->
-   <img id='myBtn' width=30 height=30 src='{% static "/images/new_task.png" %}?v=00006'/>
-   <div id="myModal" class="modal">
-     <!-- Modal content -->
-     <div class="modal-content">
-       <span class="close">&times;</span>
-       <h4>New task</h4>
-        <form action='/kanban/' method="POST" id='new_task_form'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add new task</button>
-        </form>
-     </div>
+<div class='new_task_wrapper' id='new_task'>
+     <!-- The Modal -->
+ <img id='myBtn' width=30 height=30 src='{% static "/images/new_task.png" %}?v=00006'/>
+ <div id="myModal" class="modal">
+   <!-- Modal content -->
+   <div class="modal-content">
+     <span class="close">&times;</span>
+     <h4>New task</h4>
+      <form action='/kanban/' method="POST" id='new_task_form'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Add new task</button>
+      </form>
    </div>
  </div>
+</div>
+<div id='container'>
+  <div class='task_category'>
+    <span class="editable task_header"><h2>Backlog</h2></span>
+    <div class="big-block" id="backlog">
+    </div>
+  </div>
+  <div class='task_category'>
+    <span class="editable task_header"><h2>Active</h2></span>
+    <div class="big-block" id="active">
+    </div>
+  </div>
+  <div class='task_category'>
+    <span class="editable task_header"><h2>Complete</h2></span>
+    <div class="big-block" id="complete">
+    </div>
+  </div>
 </div>
 {% endblock %}

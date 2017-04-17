@@ -1,22 +1,62 @@
 body{
-  background-color: #b39e6c;
+  background-color: #f3f2f2;
   margin: 0;
   font-size: 15px;
+  font-weight: lighter;
   font-family: sans-serif;
 }
 
-.input[type=text] {
+
+.ui-state-hover {
+  background-color: #ffC
+}
+.inlineEdit-placeholder {
+  font-style: italic; color: #555;
+}
+
+h1{
+  font-weight: lighter;
+}
+
+.portlet {
+  margin-bottom: 1em;
+  padding: 0.3em;
+  cursor:context-menu;
+  background-color: grey;
+}
+.portlet-header {
+  padding: 0.2em 0.3em;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+.portlet-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -8px;
+}
+.portlet-content {
+  text-align: center;
+  padding: 0.4em;
+}
+.portlet-placeholder {
+  border: 1px dotted black;
+  margin: 0 1em 1em 0;
+  height: 50px;
+}
+
+/*.input[type=text] {
     width: 130px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
-}
+}*/
 
 /* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
+/*input[type=text]:focus {
     width: 140px;
-}
+}*/
 
-a#logout{
+a.navbutton{
   padding: 10px;
   text-decoration: none;
   color: white;
@@ -56,26 +96,19 @@ div#account{
 }
 
 div.big-block{
-  width: 25%;
-  float: left;
-  margin-right: 5px;
-  border: 2.5px solid #000;
-  text-align: center;
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 div.wrapper-content{
   width: 70%;
   float: left;
   height: auto;
-  padding: 10px;
   border: 2.5px solid #000;
-  /*margin-left: 10px;
-  margin-bottom: 30px;*/
-  margin: 0 auto;
-  border-radius: 10px;
-  text-align: center;
-  background-color: white;
+  background-color: #fff;
+  border-radius: 5px;
   opacity: 0.8;
   transition: opacity .3s ease-in-out;
 }
@@ -86,25 +119,30 @@ div.wrapper-content:hover{
 
 div.new_task_wrapper{
   width: 50px;
-  float: left;
+  float: right;
   height: auto;
   padding: 10px;
-  border: 2.5px solid #000;
   margin-left: 10px;
   margin-bottom: 30px;
-  border-radius: 10px;
   text-align: center;
-  background-color: white;
   cursor: crosshair;
 }
 
 div#container{
   width: 90%;
   padding: 10px;
-  height: 1200px;
   margin: 0 auto;
   margin-top: 30px;
-  border: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.task_category{
+  background-color: #ccc;
+  border-radius: 8px;
+  width: 25%;
 }
 
 /* The Modal (background) */
@@ -146,3 +184,7 @@ div#container{
     text-decoration: none;
     cursor: pointer;
 }
+
+/*.editable.task_header{
+  background-color: red;
+}*/
