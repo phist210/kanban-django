@@ -2,12 +2,16 @@
 {% load static %}
 {% block content %}
 {% include 'kanban/nav_bar.html' %}
-<div class='container'>
-  <h4>Edit task</h4>
-  <form action='/kanban/{{task.id}}' method="POST" id='edit_task'>
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Edit task</button>
-  </form>
+<div id='container'>
+  <div class='big-block'>
+    <h4>Edit task</h4>
+    <form action='/kanban/{{task.id}}' method="POST" id='edit_task'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button id='edit_task' type="submit">Edit task</button> or <button><a href='{{task.id}}/delete'>Delete?</a></button>
+    </form>
+
+
+  </div>
 </div>
 {% endblock %}

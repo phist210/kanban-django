@@ -97,9 +97,11 @@ div#account{
 
 div.big-block{
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: .3em;
 }
 
 div.wrapper-content{

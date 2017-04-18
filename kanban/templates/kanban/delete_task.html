@@ -1,0 +1,13 @@
+{% extends 'kanban/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'kanban/nav_bar.html' %}
+<div id='container'>
+  <div class='big-block'>
+    <h4>Deleted this task:</h4>
+    {{task.name}}</br>
+    <a href='/kanban/'>Go Home</a>
+
+  </div>
+</div>
+{% endblock %}

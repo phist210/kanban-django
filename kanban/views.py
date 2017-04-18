@@ -47,15 +47,24 @@ def edit_task(request, id):
         task = Task.objects.get(id=id)
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
+
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             task = form.save(commit=True)
             task.save()
             return redirect('/kanban/', pk=task.pk)
+
     else:
         form = TaskForm(instance=task)
     return render(request, 'kanban/edit_task.html', {'form': form, 'task': task})
+
+
+def delete_task(request, id):
+    task = Task.objects.get(id=id)
+    task.delete()
+    url = 'kanban/delete_task.html'
+    return render(request, url, {'task': task})
 
 
 class TaskViewSet(viewsets.ModelViewSet):

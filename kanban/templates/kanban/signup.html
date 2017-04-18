@@ -2,14 +2,16 @@
 
 {% block content %}
 <div id='container'>
-  <h2>Sign up</h2>
-  <form method="post" class='input'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+  <div class='big-block'>
+    <h2>Sign up</h2>
+    <form method="post" class='input'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Sign up</button>
+    </form>
 
-  <p><h4>Already have an account?</h4></p>
-  <a href='/login'>Login</a>
+    <h4>Already have an account?</h4>
+    <a href='/login'>Login</a>
+  </div>
 </div>
 {% endblock %}

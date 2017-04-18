@@ -1,4 +1,3 @@
-
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Task
@@ -7,12 +6,7 @@ from .models import Task
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
-        fields = ('name', 'priority', 'status', 'owner_id', 'id')
-
-    def in_range(priority):
-        if priority not in range(1, 11):
-            raise serializers.ValidationError('This field must '
-                                              'be an integer 1-10.')
+        fields = ('name', 'description', 'status', 'owner_id', 'id')
 
     def vaild_status(status):
         valid_list = ['backlog', 'active', 'complete']
@@ -20,7 +14,7 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError('This field must be backlog, '
                                               'active or complete.')
 
-    priority = serializers.IntegerField(validators=[in_range])
+    description = serializers.CharField()
     status = serializers.CharField(validators=[vaild_status])
 
 

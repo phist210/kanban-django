@@ -1,11 +1,16 @@
-$(function() {
-  $('.editable').inlineEdit({
-    buttonText: 'Add',
-    save: function(e, data) {
-      return confirm('Change name to '+ data.value +'?');
-    }
-  });
-});
+
+// function csrfSafeMethod(method) {
+//     // these HTTP methods do not require CSRF protection
+//     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+// }
+// $.ajaxSetup({
+//     beforeSend: function(xhr, settings) {
+//         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+//             xhr.setRequestHeader("X-CSRFToken", csrftoken);
+//         }
+//     }
+// });
+
 
 function sortaTable() {
 
@@ -14,7 +19,10 @@ function sortaTable() {
     handle: ".portlet-header",
     cancel: ".portlet-toggle",
     placeholder: "portlet-placeholder ui-corner-all",
+    dropOnEmpty: true,
+    stop: dropHandler,
   });
+
   $( ".portlet" )
       .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
       .find( ".portlet-header" )
@@ -22,13 +30,45 @@ function sortaTable() {
       .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
 
   $( ".portlet-toggle" ).on( "click", function() {
-
     var icon = $( this );
     icon.toggleClass( "ui-icon-plusthick ui-icon-minusthick" );
     icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
   });
-  // console.log($(sdafasdfasdf).serialize());
 }
+
+
+var dropHandler = function(event, ui){
+  // console.log(event);
+  // console.log(event.originalEvent);
+  // console.log(event.originalEvent.target);
+  var taskID = event.originalEvent.target.parentNode.id;
+  var portletStatus = $(event.originalEvent.target.parentNode)[0].parentNode.id;
+  var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+  var data = { status: portletStatus };
+  console.log(portletStatus);
+  console.log(data);
+
+  var settings = {
+              beforeSend: function(xhr, settings) { xhr.setRequestHeader("X-CSRFToken", csrftoken); },
+              url: "/task/" + taskID + '/',
+              type: 'PATCH',
+              data: data
+      }
+  console.log(settings);
+  $.ajax(settings);
+  // var portletID = ($(this).parent().attr('id'));
+  // var portletStatus = ($(this).parents('.big-block').attr('id'));  // TODO: make this thing change to the other thing
+  // console.log(portletStatus);
+};
+
+function portletEdit() {
+    $('.portlet-content').dblclick(function(){
+    var portletID = ($(this).parent().attr('id'));
+    var portletStatus = ($(this).parents('.big-block').attr('id'));
+    window.location.replace("/kanban/" + portletID);
+  });
+}
+
 
 function getTasks() {
   var taskApi = "/task/";
@@ -38,52 +78,27 @@ function getTasks() {
     for(var i = 0; i < taskLength; i++){
       var taskName = result.results[i].name;
       var taskStatus = result.results[i].status;
-      var taskPriority = result.results[i].priority;
+      var taskDescription = result.results[i].description;
       var taskID = result.results[i].id;
 
       if(taskStatus.toLowerCase() === "backlog"){
-        $('div.big-block#backlog').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + "Priority level: " + taskPriority + "/10" + "</div>" + "</div>");
+        $('div.big-block#backlog').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + taskDescription + "</div>" + "</div>");
       }
       else if (taskStatus.toLowerCase() === "active") {
-        $('div.big-block#active').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + "Priority level: " + taskPriority + "/10" + "</div>" + "</div>");
+        $('div.big-block#active').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + taskDescription + "</div>" + "</div>");
       }
       else if (taskStatus.toLowerCase() === "complete") {
-        $('div.big-block#complete').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + "Priority level: " + taskPriority + "/10" + "</div>" + "</div>");
+        $('div.big-block#complete').append("<div class=portlet id="+ taskID +">" + "<div class=portlet-header>" + taskName + "</div>" + "<div class=portlet-content>" + taskDescription + "</div>" + "</div>");
       }
     }
     sortaTable();
     portletEdit();
-  }
-});
+    }
+  });
 }
 
 $(getTasks)
 
-function portletEdit() {
-    $('.portlet-content').on("click", function(){
-    var portletID = ($(this).parent().attr('id'));
-    var portletStatus = ($(this).parents('.big-block').attr('id'));
-    console.log(portletID);
-    console.log(portletStatus);
-    window.location.replace("/kanban/" + portletID);
-  });
-}
-
-$("edit_task").submit(function(e){
-    $.ajax({
-        url: 'task/',
-        type: "PUT",
-        data: $("edit_task").serialize(),
-        cache: false,
-        dataType: "text",
-        success: function(data){
-          console.log('a');
-        },
-        error: function() {
-            console.log("ERROR");
-        }
-    });
-});
 
 $('new_task_form').on('submit', function(event) {
   event.preventDefault();
